@@ -1,0 +1,36 @@
+linters:
+  enable:
+    - deadcode
+    - errcheck
+    - goconst
+    - golint
+    - ineffassign
+    - lll
+    - misspell
+    - structcheck
+    - unconvert
+    - varcheck
+    - govet
+    - goimports
+    - prealloc
+    - unused
+    - staticcheck
+    - gosimple
+    - megacheck
+  disable:
+    - interfacer
+    - maligned
+linters-settings:
+  lll:
+    line-length: 200
+  goconst:
+    min-occurrences: 4
+  govet:
+    check-shadowing: true
+  maligned:
+    suggest-new: true
+run:
+  deadline: 10m
+issues:
+  exclude:
+    - composites

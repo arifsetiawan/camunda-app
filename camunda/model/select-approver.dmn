@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" id="Definitions_09los0x" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="3.1.0">
+  <decision id="leave-select-approver" name="Select Approver">
+    <decisionTable id="decisionTable_1">
+      <input id="input_1" label="How many days">
+        <inputExpression id="inputExpression_1" typeRef="integer">
+          <text>days</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_0lnjwl4" label="Employee level">
+        <inputExpression id="LiteralExpression_0mhpkib" typeRef="string">
+          <text>level</text>
+        </inputExpression>
+      </input>
+      <output id="output_1" label="Approver" name="approverGroup" typeRef="string" />
+      <rule id="DecisionRule_1jm9u5l">
+        <inputEntry id="UnaryTests_157gth5">
+          <text>&lt;=2</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1vkbp8x">
+          <text>"junior"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1q3mvgq">
+          <text>"hr"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0674o9f">
+        <inputEntry id="UnaryTests_1mbwhy9">
+          <text>[3..5]</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0p5ssh6">
+          <text>"junior"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0xo19tu">
+          <text>"manager"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0ui6u7h">
+        <inputEntry id="UnaryTests_1hi7slo">
+          <text>[1..5]</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_15jxzkl">
+          <text>"senior"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0rg55wc">
+          <text>"manager"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0l7sbyu">
+        <inputEntry id="UnaryTests_0j9yc65">
+          <text>&gt;5</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_18h4pth">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1g7tlim">
+          <text>"CEO"</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram id="DMNDiagram_0377rl4">
+      <dmndi:DMNShape id="DMNShape_1reol8e" dmnElementRef="leave-select-approver">
+        <dc:Bounds height="80" width="180" x="150" y="150" />
+      </dmndi:DMNShape>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>
