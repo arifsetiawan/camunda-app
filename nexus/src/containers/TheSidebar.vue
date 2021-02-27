@@ -25,10 +25,10 @@ export default {
   nav,
   computed: {
     show () {
-      return this.$store.state.sidebarShow 
+      return this.$store.state.sidebar.sidebarShow 
     },
     minimize () {
-      return this.$store.state.sidebarMinimize 
+      return this.$store.state.sidebar.sidebarMinimize 
     }
   }
 }

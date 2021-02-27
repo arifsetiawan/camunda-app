@@ -16,6 +16,11 @@
     <CHeaderNav class="d-md-down-none mr-auto">
     </CHeaderNav>
     <CHeaderNav class="mr-4">
+      <CHeaderNavItem class="px-3">
+        <CHeaderNavLink>
+          {{userName}}
+        </CHeaderNavLink>
+      </CHeaderNavItem>
       <TheHeaderDropdownAccnt/>
     </CHeaderNav>
     <CSubheader class="px-3">
@@ -31,6 +36,16 @@ export default {
   name: 'TheHeader',
   components: {
     TheHeaderDropdownAccnt
+  },
+  computed: {
+    userName () {
+      return this.$store.state.user.profile.firstName + " " + this.$store.state.user.profile.lastName
+    }
+  },
+  created() {
+    if (localStorage.getItem('user-profile')) {
+      this.$store.state.user.profile = JSON.parse(localStorage.getItem('user-profile'))
+    }
   }
 }
 </script>

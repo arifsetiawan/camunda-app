@@ -2,16 +2,17 @@
   <div class="c-app flex-row align-items-center">
     <CContainer>
       <CRow class="justify-content-center">
-        <CCol md="8">
+        <CCol md="4">
           <CCardGroup>
             <CCard class="p-4">
               <CCardBody>
-                <CForm>
+                <CForm v-on:keypress.enter="login">
                   <h1>Nexus</h1>
                   <p class="text-muted">Sign In to your account</p>
                   <CInput
                     placeholder="Username"
                     autocomplete="username email"
+                    v-model="username" 
                   >
                     <template #prepend-content><CIcon name="cil-user"/></template>
                   </CInput>
@@ -19,6 +20,7 @@
                     placeholder="Password"
                     type="password"
                     autocomplete="curent-password"
+                    v-model="password" 
                   >
                     <template #prepend-content><CIcon name="cil-lock-locked"/></template>
                   </CInput>
@@ -44,13 +46,12 @@ export default {
   name: 'Login',
   data() {
     return {
-      username: "username",
-      password: "password"
+      username: "",
+      password: ""
     };
   },
   methods: {
     login: function() {
-      console.log(username, password )
       const { username, password } = this;
       this.$store.dispatch(AUTH_REQUEST, { username, password }).then(() => {
         this.$router.push("/");

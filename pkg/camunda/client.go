@@ -40,6 +40,22 @@ func (c *Client) IdentityVerify(param *IdentityVerifyRequest) (response *Identit
 	return resp.Result().(*IdentityVerifyResponse), err
 }
 
+// UserProfile ...
+func (c *Client) UserProfile(userID string) (response *UserProfileResponse, err error) {
+	resp, err := c.Client.R().
+		SetResult(&UserProfileResponse{}).
+		Get(c.APIURL + "/user/" + userID + "/profile")
+	if err != nil {
+		return nil, err
+	}
+
+	if resp.StatusCode() != 200 {
+		return nil, errors.New(resp.String())
+	}
+
+	return resp.Result().(*UserProfileResponse), err
+}
+
 // ListTask ...
 func (c *Client) ListTask(param *ListTaskRequest) (response *[]UserTask, err error) {
 	resp, err := c.Client.R().

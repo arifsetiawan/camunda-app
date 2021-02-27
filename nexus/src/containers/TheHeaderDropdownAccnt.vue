@@ -9,24 +9,29 @@
       <CHeaderNavLink>
         <div class="c-avatar">
           <img
-            src="img/avatars/man.png"
-            class="c-avatar-img "
+            src="img/avatars/robot.png"
+            class="c-avatar-img"
           />
         </div>
       </CHeaderNavLink>
     </template>
-    <CDropdownItem>
-      <CIcon name="cil-lock-locked" /> Logout
+    <CDropdownItem @click="logout">
+      <CIcon name="cil-lock-locked"/> Logout
     </CDropdownItem>
   </CDropdown>
 </template>
 
 <script>
+import { AUTH_LOGOUT } from "../store/actions/auth";
+
 export default {
   name: 'TheHeaderDropdownAccnt',
-  data () {
-    return { 
-      itemsCount: 42
+  methods: {
+    logout: function () {
+      this.$store.dispatch(AUTH_LOGOUT)
+      .then(() => {
+        this.$router.push('/login')
+      })
     }
   }
 }
