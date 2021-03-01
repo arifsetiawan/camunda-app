@@ -27,7 +27,7 @@ var reqCnt = &Metric{
 	ID:          "reqCnt",
 	Name:        "echo_requests_total",
 	Description: "How many HTTP requests processed, partitioned by status code and HTTP method.",
-	Args:        []string{"service", "code", "method", "url", "usertype"},
+	Args:        []string{"service", "code", "method", "url"},
 	Type:        "counter_vec",
 }
 
@@ -35,7 +35,7 @@ var reqDur = &Metric{
 	ID:          "reqDur",
 	Name:        "echo_request_duration_seconds",
 	Description: "The HTTP request latencies in seconds.",
-	Args:        []string{"service", "code", "method", "url", "usertype"},
+	Args:        []string{"service", "code", "method", "url"},
 	Type:        "histogram_vec",
 	Buckets:     prometheus.DefBuckets,
 }
@@ -44,7 +44,7 @@ var resSz = &Metric{
 	ID:          "resSz",
 	Name:        "echo_response_size_bytes",
 	Description: "The HTTP response sizes in bytes.",
-	Args:        []string{"service", "code", "method", "url", "usertype"},
+	Args:        []string{"service", "code", "method", "url"},
 	Type:        "histogram_vec",
 	Buckets:     prometheus.LinearBuckets(0, 1000, 10),
 }
@@ -53,7 +53,7 @@ var reqSz = &Metric{
 	ID:          "reqSz",
 	Name:        "echo_request_size_bytes",
 	Description: "The HTTP request sizes in bytes.",
-	Args:        []string{"service", "code", "method", "url", "usertype"},
+	Args:        []string{"service", "code", "method", "url"},
 	Type:        "histogram_vec",
 	Buckets:     prometheus.LinearBuckets(0, 1000, 10),
 }
@@ -283,21 +283,13 @@ func (p *Prometheus) HandlerFunc(next echo.HandlerFunc) echo.HandlerFunc {
 
 		stop := time.Now()
 
-		userType, ok := c.Get("userType").(string)
-		if !ok {
-			userType = "unknown"
-		}
-		if len(userType) == 0 {
-			userType = "unknown"
-		}
-
 		status := strconv.Itoa(c.Response().Status)
 		url := p.RequestCounterURLLabelMappingFunc(c)
 
 		elapsed := float64(stop.Sub(start).Nanoseconds() / int64(time.Second))
 
-		p.reqDur.WithLabelValues(p.Subsystem, status, c.Request().Method, url, userType).Observe(elapsed)
-		p.reqCnt.WithLabelValues(p.Subsystem, status, c.Request().Method, url, userType).Inc()
+		p.reqDur.WithLabelValues(p.Subsystem, status, c.Request().Method, url).Observe(elapsed)
+		p.reqCnt.WithLabelValues(p.Subsystem, status, c.Request().Method, url).Inc()
 
 		return
 	}
