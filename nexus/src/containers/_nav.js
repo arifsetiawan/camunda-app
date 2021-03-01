@@ -10,7 +10,7 @@ export default [
       },
       {
         _name: 'CSidebarNavTitle',
-        _children: ['Tasks']
+        _children: ['Records']
       },
       {
         _name: 'CSidebarNavItem',
@@ -25,7 +25,7 @@ export default [
       {
         _name: 'CSidebarNavItem',
         name: 'Leave Request',
-        to: '/workflow/leave',
+        to: '/forms/leave',
         icon: 'cil-pencil'
       }
     ]

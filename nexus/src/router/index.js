@@ -6,9 +6,11 @@ import store from "../store";
 const TheContainer = () => import('@/containers/TheContainer')
 
 // Nexus
-const NexusHome = () => import('@/views/Home')
-const NexusTables = () => import('@/views/nexus/Tables')
-const NexusLeaveRequest = () => import('@/views/nexus/LeaveRequest')
+const Home = () => import('@/views/Home')
+const Tasks = () => import('@/views/tasks/Tasks')
+const LeaveRequestApproval = () => import('@/views/forms/LeaveRequestApproval')
+const Requests = () => import('@/views/tasks/Requests')
+const LeaveRequest = () => import('@/views/forms/LeaveRequest')
 const Login = () => import('@/views/pages/Login')
 
 Vue.use(Router)
@@ -47,17 +49,27 @@ function configRoutes () {
         {
           path: 'home',
           name: 'Home',
-          component: NexusHome,
+          component: Home,
         },
         {
           path: 'tasks',
           name: 'Tasks',
-          component: NexusTables,
+          component: Tasks,
         },
         {
-          path: 'workflow/leave',
+          path: 'tasks/:taskId',
+          name: 'Tasks Detail',
+          component: LeaveRequestApproval,
+        },
+        {
+          path: 'requests',
+          name: 'Requests',
+          component: Requests,
+        },
+        {
+          path: 'forms/leave',
           name: 'Leave Request',
-          component: NexusLeaveRequest,
+          component: LeaveRequest,
         }
       ],
       beforeEnter: ifAuthenticated  

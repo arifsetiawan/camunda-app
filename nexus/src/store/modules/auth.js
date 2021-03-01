@@ -6,7 +6,6 @@ import {
   AUTH_LOGOUT
 } from "../actions/auth";
 import { USER_REQUEST } from "../actions/user";
-import apiCall from "../../utils/api";
 import axios from 'axios';
 
 const state = {
@@ -24,7 +23,7 @@ const actions = {
   [AUTH_REQUEST]: ({ commit, dispatch }, user) => {
     return new Promise((resolve, reject) => {
       commit(AUTH_REQUEST);
-      axios.post('http://localhost:9090/auth/login', user)
+      axios.post(process.env.VUE_APP_CAMUNDA_PROXY_URL + '/auth/login', user)
       .then(resp => {
         const token = resp.data.token
         localStorage.setItem("user-token", token);

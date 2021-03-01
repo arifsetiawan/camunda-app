@@ -21,7 +21,7 @@ import CTableWrapper from './Table.vue'
 import usersData from '../users/UsersData'
 
 export default {
-  name: 'Tables',
+  name: 'Submissions',
   components: { CTableWrapper },
   methods: {
     shuffleArray (array) {

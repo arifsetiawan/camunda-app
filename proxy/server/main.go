@@ -51,7 +51,7 @@ func main() {
 
 	// @
 	// Start app
-	servicePort := env.Getenv("PORT", ":9090")
+	servicePort := env.Getenv("PORT", ":9010")
 	log.Info().Msg(appName + " with version: " + env.Getenv("VERSION", "0.1.0") + " started at port " + servicePort)
 
 	go func() {

@@ -15,7 +15,7 @@ func EmailHandler(client *camunda.Client, tasks []camunda.ExternalTask) error {
 
 		// complete
 		err := client.CompleteExternalTask(task.ID, &camunda.CompleteExternalTaskRequest{
-			WorkerID: "worker2",
+			WorkerID: "email-worker",
 		})
 		if err != nil {
 			return err

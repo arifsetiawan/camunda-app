@@ -1,6 +1,5 @@
 # List of projects to build
 PROJECTS := proxy external-task
-
 all: build
 
 clean: TARGET=clean

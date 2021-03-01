@@ -41,4 +41,9 @@ func InitHandler(e *echo.Echo) {
 		CamundaClient: camundaClient,
 	}
 	profileHandler.SetRoutes(r)
+
+	processHandler := ProcessHandler{
+		CamundaClient: camundaClient,
+	}
+	processHandler.SetRoutes(r)
 }

@@ -7,13 +7,12 @@ This repo has 3 services and uses Golang as backend and Vue as frontend.
 
 - Auth proxy for JWT based auth for Camunda REST API 
 - External task handler
+    - Note that Send Email task is doing nothing, but it should be easy to add email sender function using Golang smtp for example.
 - Company Portal (called Nexus) with example Leave Request workflow. This app is built with [CoreUI free Vue.js Admin Template](https://coreui.io/vue/). Two main functions for the Portal are:
     - Create request that will trigger workflow execution
     - Working with user tasks
 
-Note that Send Email task is doing nothing, but it should be easy to add email sender function using Golang smtp for example.
-
-# Development
+# Development                                                                                                     
 
 ## 1. Deploy and setup Camunda
 
@@ -39,4 +38,8 @@ make -C deploy run-external-task
 
 ```
 cd nexus
+
+npm install
+
+npm run serve
 ```

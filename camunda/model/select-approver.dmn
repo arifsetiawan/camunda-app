@@ -15,10 +15,10 @@
       <output id="output_1" label="Approver" name="approverGroup" typeRef="string" />
       <rule id="DecisionRule_1jm9u5l">
         <inputEntry id="UnaryTests_157gth5">
-          <text>&lt;=2</text>
+          <text>&lt;=5</text>
         </inputEntry>
         <inputEntry id="UnaryTests_1vkbp8x">
-          <text>"junior"</text>
+          <text>"juniors"</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_1q3mvgq">
           <text>"hr"</text>
@@ -26,10 +26,10 @@
       </rule>
       <rule id="DecisionRule_0674o9f">
         <inputEntry id="UnaryTests_1mbwhy9">
-          <text>[3..5]</text>
+          <text>&gt;5</text>
         </inputEntry>
         <inputEntry id="UnaryTests_0p5ssh6">
-          <text>"junior"</text>
+          <text>"juniors"</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_0xo19tu">
           <text>"manager"</text>
@@ -37,10 +37,10 @@
       </rule>
       <rule id="DecisionRule_0ui6u7h">
         <inputEntry id="UnaryTests_1hi7slo">
-          <text>[1..5]</text>
+          <text></text>
         </inputEntry>
         <inputEntry id="UnaryTests_15jxzkl">
-          <text>"senior"</text>
+          <text>"seniors"</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_0rg55wc">
           <text>"manager"</text>
@@ -48,13 +48,24 @@
       </rule>
       <rule id="DecisionRule_0l7sbyu">
         <inputEntry id="UnaryTests_0j9yc65">
-          <text>&gt;5</text>
-        </inputEntry>
-        <inputEntry id="UnaryTests_18h4pth">
           <text></text>
         </inputEntry>
+        <inputEntry id="UnaryTests_18h4pth">
+          <text>"manager","hr"</text>
+        </inputEntry>
         <outputEntry id="LiteralExpression_1g7tlim">
-          <text>"CEO"</text>
+          <text>"ceo"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0wi1tyw">
+        <inputEntry id="UnaryTests_1sxf035">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_02b91my">
+          <text>"ceo"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0pdy9aw">
+          <text>"hr"</text>
         </outputEntry>
       </rule>
     </decisionTable>

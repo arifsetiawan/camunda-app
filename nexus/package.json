@@ -1,25 +1,23 @@
 {
-  "name": "@coreui/coreui-free-vue-admin-template",
-  "version": "3.1.2",
-  "description": "Open Source Bootstrap Admin Template",
+  "name": "@arifsetiawan/nexus",
+  "version": "0.1.0",
+  "description": "The Nexus is a cross-dimensional gateway which provides a pathway to any and all possible realities",
   "author": {
-    "name": "CoreUI",
-    "url": "https://coreui.io",
-    "github": "https://github.com/coreui",
-    "twitter": "https://twitter.com/core_ui"
+    "name": "Arif Setiawan",
+    "github": "https://github.com/arifsetiawan",
+    "twitter": "https://twitter.com/ken121f"
   },
   "contributors": [
     {
-      "name": "CoreUI Team",
-      "url": "https://github.com/orgs/coreui/people"
+      "name": "arifsetiawan",
+      "url": "https://github.com/arifsetiawan"
     }
   ],
   "repository": {
     "type": "git",
-    "url": "git@github.com:coreui/coreui-free-vue-admin-template.git"
+    "url": "git@github.com:arifsetiawan/camunda-app.git"
   },
-  "homepage": "http://coreui.io",
-  "copyright": "Copyright 2020 creativeLabs Łukasz Holeczek",
+  "copyright": "Copyright 2020 Arif Setiawan",
   "license": "MIT",
   "scripts": {
     "serve": "vue-cli-service serve",

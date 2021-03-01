@@ -1,5 +1,4 @@
 import { USER_REQUEST, USER_ERROR, USER_SUCCESS } from "../actions/user";
-import apiCall from "../../utils/api";
 import Vue from "vue";
 import axios from 'axios';
 import { AUTH_LOGOUT } from "../actions/auth";
@@ -14,7 +13,7 @@ const getters = {
 const actions = {
   [USER_REQUEST]: ({ commit, dispatch }) => {
     commit(USER_REQUEST);
-    axios.get('http://localhost:9090/me')
+    axios.get(process.env.VUE_APP_CAMUNDA_PROXY_URL + '/me')
     .then(resp => {
       commit(USER_SUCCESS, resp);
       localStorage.setItem('user-profile', JSON.stringify(resp.data))

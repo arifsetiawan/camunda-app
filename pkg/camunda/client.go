@@ -40,6 +40,22 @@ func (c *Client) IdentityVerify(param *IdentityVerifyRequest) (response *Identit
 	return resp.Result().(*IdentityVerifyResponse), err
 }
 
+// IdentityGroups ...
+func (c *Client) IdentityGroups(userID string) (response *IdentityGroupResponse, err error) {
+	resp, err := c.Client.R().
+		SetResult(&IdentityGroupResponse{}).
+		Get(c.APIURL + "/identity/groups?userId=" + userID)
+	if err != nil {
+		return nil, err
+	}
+
+	if resp.StatusCode() != 200 {
+		return nil, errors.New(resp.String())
+	}
+
+	return resp.Result().(*IdentityGroupResponse), err
+}
+
 // UserProfile ...
 func (c *Client) UserProfile(userID string) (response *UserProfileResponse, err error) {
 	resp, err := c.Client.R().
@@ -56,8 +72,8 @@ func (c *Client) UserProfile(userID string) (response *UserProfileResponse, err 
 	return resp.Result().(*UserProfileResponse), err
 }
 
-// ListTask ...
-func (c *Client) ListTask(param *ListTaskRequest) (response *[]UserTask, err error) {
+// ListUserTask ...
+func (c *Client) ListUserTask(param *ListUserTaskRequest) (response *[]UserTask, err error) {
 	resp, err := c.Client.R().
 		SetHeader("Content-Type", "application/json").
 		SetBody(param).
@@ -72,6 +88,39 @@ func (c *Client) ListTask(param *ListTaskRequest) (response *[]UserTask, err err
 	}
 
 	return resp.Result().(*[]UserTask), err
+}
+
+// UserTaskVariables ...
+func (c *Client) UserTaskVariables(taskID string) (response *Variables, err error) {
+	resp, err := c.Client.R().
+		SetResult(&Variables{}).
+		Get(c.APIURL + "/task/" + taskID + "/variables")
+	if err != nil {
+		return nil, err
+	}
+
+	if resp.StatusCode() != 200 {
+		return nil, errors.New(resp.String())
+	}
+
+	return resp.Result().(*Variables), err
+}
+
+// CompleteUserTask ...
+func (c *Client) CompleteUserTask(id string, param *CompleteUserTaskRequest) (err error) {
+	resp, err := c.Client.R().
+		SetHeader("Content-Type", "application/json").
+		SetBody(param).
+		Post(c.APIURL + "/task/" + id + "/complete")
+	if err != nil {
+		return err
+	}
+
+	if resp.StatusCode() != 204 {
+		return errors.New("Complete failed with response " + resp.String())
+	}
+
+	return nil
 }
 
 // FetchAndLockExternalTask ...
@@ -103,6 +152,23 @@ func (c *Client) CompleteExternalTask(id string, param *CompleteExternalTaskRequ
 	}
 
 	if resp.StatusCode() != 204 {
+		return errors.New("Complete failed with response " + resp.String())
+	}
+
+	return nil
+}
+
+// ProcessDefinitionStart ...
+func (c *Client) ProcessDefinitionStart(definitionID string, param *ProcessStartRequest) (err error) {
+	resp, err := c.Client.R().
+		SetHeader("Content-Type", "application/json").
+		SetBody(param).
+		Post(c.APIURL + "/process-definition/key/" + definitionID + "/start")
+	if err != nil {
+		return err
+	}
+
+	if resp.StatusCode() != 200 {
 		return errors.New("Complete failed with response " + resp.String())
 	}
 

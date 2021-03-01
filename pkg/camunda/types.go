@@ -12,18 +12,25 @@ type IdentityVerifyResponse struct {
 	Authenticated     bool   `json:"authenticated"`
 }
 
-// ListTaskRequest ...
-type ListTaskRequest struct {
-	Assignee string `json:"assignee"`
+// ListUserTaskRequest ...
+type ListUserTaskRequest struct {
+	CandidateGroup string `json:"candidateGroup"`
+	Unassigned     bool   `json:"unassigned"`
 }
 
 // UserTask ...
 type UserTask struct {
-	ID                string `json:"id"`
-	Name              string `json:"name"`
-	Assignee          string `json:"assignee"`
-	Created           string `json:"created"`
-	ProcessInstanceID string `json:"processInstanceId"`
+	ID                  string `json:"id"`
+	Name                string `json:"name"`
+	Assignee            string `json:"assignee"`
+	Created             string `json:"created"`
+	ProcessInstanceID   string `json:"processInstanceId"`
+	ProcessDefinitionID string `json:"processDefinitionId"`
+}
+
+// CompleteUserTaskRequest ...
+type CompleteUserTaskRequest struct {
+	Variables map[string]Variable `json:"variables"`
 }
 
 // FetchAndLockTopic ...
@@ -58,11 +65,30 @@ type CompleteExternalTaskRequest struct {
 	Variables map[string]Variable `json:"variables"`
 }
 
+// Variables ...
+type Variables map[string]Variable
+
 // UserProfileResponse ...
 type UserProfileResponse struct {
 	ID        string `json:"id"`
 	FirstName string `json:"firstName"`
 	LastName  string `json:"lastName"`
 	Email     string `json:"email"`
-	Avatar    string `json:"avatar"`
+}
+
+// IdentityGroupResponse ...
+type IdentityGroupResponse struct {
+	Groups []IdentityGroup `json:"groups"`
+}
+
+// IdentityGroup ...
+type IdentityGroup struct {
+	ID   string `json:"id"`
+	Name string `json:"name"`
+}
+
+// ProcessStartRequest ...
+type ProcessStartRequest struct {
+	BusinessKey string              `json:"businessKey"`
+	Variables   map[string]Variable `json:"variables"`
 }
