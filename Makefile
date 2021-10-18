@@ -1,5 +1,5 @@
 # List of projects to build
-PROJECTS := proxy external-task
+PROJECTS := proxy external-task nexus
 all: build
 
 clean: TARGET=clean
