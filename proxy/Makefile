@@ -9,7 +9,7 @@ DEBUG_BINARIES := debug-$(SERVER)
 STATIC_BINARIES := $(SERVER_STATIC)
 LOCATION := github.com/arifsetiawan/camunda-app/$(NAME)
 
-HUB ?= docker.io/arifsetiawan
+HUB ?= ghcr.io/arifsetiawan
 TAG ?= $(shell git rev-parse HEAD)
 
 all: $(BINARIES)
